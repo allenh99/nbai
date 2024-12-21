@@ -34,7 +34,7 @@ class PlayerStats():
             season_end_year=y
         )
     
-    #Generate Box Scores for a given player for a month
+    #Generate Box Scores for a given player for a month span - returns list of box scores
     def player_box_scores_1month(self,name,start):
         m,d,y = start.split("/")
         date_string = y + "-" + m + "-" + d
@@ -42,7 +42,13 @@ class PlayerStats():
         scores = [i for i in self.player_box_scores_season(name,end_year) if (datetime.strptime(date_string, "%Y-%m-%d").date() - i['date']).days < 30 and (datetime.strptime(date_string, "%Y-%m-%d").date() - i['date']).days > -1]
         return scores
 
-
+    #Generate Box Scores for a given player for the last 90 days - returns list of box scores
+    def player_box_scores_3month(self,name,start):
+        m,d,y = start.split("/")
+        date_string = y + "-" + m + "-" + d
+        end_year = int(y) if int(m) < 8 else int(y)+1
+        scores = [i for i in self.player_box_scores_season(name,end_year) if (datetime.strptime(date_string, "%Y-%m-%d").date() - i['date']).days < 90 and (datetime.strptime(date_string, "%Y-%m-%d").date() - i['date']).days > -1]
+        return scores
 
 
 s = PlayerStats()
