@@ -1,13 +1,16 @@
 from basketball_reference_web_scraper import client
 from datetime import datetime
+from roster import Roster
 
 class PlayerStats():
-    values = {}
+    values = {"points":0.5,"assists":1,"rebounds":1,"turnovers":-1,"steals":2,"blocks":2,"3PM":0.5}
 
     def __init__(self):
-        self.values = {"points":0.5,"assists":1,"rebounds":1,"turnovers":-1,"steals":2,"blocks":2,"3PM":0.5}
         return
-    
+
+    def __init__(self,values):
+        self.values = values
+
     #Generate player ids
     def generate_player(self,name,year):
         for i in client.players_season_totals(season_end_year=year):
@@ -63,6 +66,22 @@ class PlayerStats():
         end_year = int(y) if int(m) < 8 else int(y)+1
         scores = [i for i in self.player_box_scores_season(name,end_year) if (datetime.strptime(date_string, "%Y-%m-%d").date() - i['date']).days <= 7 and (datetime.strptime(date_string, "%Y-%m-%d").date() - i['date']).days > -1]
         return scores
+
+
+class RosterStats():
+    stats = PlayerStats()
+
+    def __init__(self,filename):
+        self.season = 2024
+        self.roster = Roster(filename)
+
+    def getRosterAverageFPTSseason(self):
+        average_rosters = {}
+        for player in self.roster:
+            scores = self.stats.player_box_scores_season(player,self.season)
+            player_fpts = self.stats.calculate_fantasy_points(scores)
+            average_rosters[player] = player_fpts
+        return average_rosters
 
 
 s = PlayerStats()
