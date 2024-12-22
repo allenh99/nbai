@@ -83,6 +83,14 @@ class RosterStats():
             average_rosters[player] = player_fpts
         return average_rosters
 
+    def getRosterTotalFPTSseason(self):
+        total_rosters = {}
+        for player in self.roster:
+            scores = self.stats.player_box_scores_season(player,self.season)
+            player_fpts = self.stats.calculate_fantasy_points(scores)
+            total_rosters[player] = player_fpts
+        return total_rosters
+
 
 s = PlayerStats()
 j3m = s.player_box_scores_3month("Josh Giddey","12/19/2024")
