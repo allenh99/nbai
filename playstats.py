@@ -2,6 +2,7 @@ from basketball_reference_web_scraper import client
 from datetime import datetime
 from roster import Roster
 
+#PlayerIDGenerator(year) - used to produce player id map
 class PlayerIDGenerator:
     def __init__(self, season_end_year):
         self.season_end_year = season_end_year
@@ -19,6 +20,8 @@ class PlayerIDGenerator:
         except Exception as e:
             print(f"An error occurred: {e}")
 
+
+#PlayerStats(fpt values,player id map) - gets player stats
 class PlayerStats():
 
     def __init__(self, values=None, input_file='players.txt'):
@@ -87,7 +90,7 @@ class PlayerStats():
         scores = [i for i in self.player_box_scores_season(name,end_year) if (datetime.strptime(date_string, "%Y-%m-%d").date() - i['date']).days <= 7 and (datetime.strptime(date_string, "%Y-%m-%d").date() - i['date']).days > -1]
         return scores
 
-
+#RosterStats(roster filename) - calculates roster statistics
 class RosterStats():
     stats = PlayerStats('players.txt')
 
@@ -111,9 +114,5 @@ class RosterStats():
             total_rosters[player] = player_fpts
         return total_rosters
 
-#print("hello world")
 generator = PlayerIDGenerator(2025)
 generator.generate_player_ids('players.txt')
-print("here")
-s = RosterStats("roster.txt")
-print(s.getRosterTotalFPTSseason())
