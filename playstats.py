@@ -2,21 +2,42 @@ from basketball_reference_web_scraper import client
 from datetime import datetime
 from roster import Roster
 
+class PlayerIDGenerator:
+    def __init__(self, season_end_year):
+        self.season_end_year = season_end_year
+
+    def generate_player_ids(self, output_file):
+        try:
+            print(self.season_end_year)
+            players = client.players_season_totals(season_end_year=self.season_end_year)
+            with open(output_file, 'w') as file:
+                for player in players:
+                    name = player['name']
+                    slug = player['slug']
+                    file.write(f"{name},{slug}\n")
+            print(f"Player IDs successfully written to {output_file}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
 class PlayerStats():
-    values = {"points":0.5,"assists":1,"rebounds":1,"turnovers":-1,"steals":2,"blocks":2,"3PM":0.5}
 
-    def __init__(self):
-        return
-
-    def __init__(self,values):
-        self.values = values
-
-    #Generate player ids
-    def generate_player(self,name,year):
-        for i in client.players_season_totals(season_end_year=year):
-            if i['name'] == name:
-                return i['slug']
-    
+    def __init__(self, values=None, input_file='players.txt'):
+        default_values = {
+            "points": 0.5,
+            "assists": 1,
+            "rebounds": 1,
+            "turnovers": -1,
+            "steals": 2,
+            "blocks": 2,
+            "3PM": 0.5,
+        }
+        player_ids = {}
+        with open(input_file, 'r') as file:
+            for line in file:
+                name, slug = line.strip().split(",")  # Split by comma
+                player_ids[name] = slug
+        self.values = values if values else default_values
+        
     #Calculate a players total FPTS given a box score
     def calculate_fantasy_points(self,box_score):
         return box_score['points_scored'] * self.values['points'] + \
@@ -37,9 +58,8 @@ class PlayerStats():
     
     #Generate Box Scores for given player for a season - returns list of box scores (dictionaries)
     def player_box_scores_season(self,name,y):
-        id = self.generate_player(name,y)
         return client.regular_season_player_box_scores(
-            player_identifier=id, 
+            player_identifier=self.player_ids[name], 
             season_end_year=y
         )
 
@@ -72,30 +92,27 @@ class RosterStats():
     stats = PlayerStats()
 
     def __init__(self,filename):
-        self.season = 2024
-        self.roster = Roster(filename)
+        self.season = 2025
+        self.roster = Roster(filename,'players.txt')
 
     def getRosterAverageFPTSseason(self):
         average_rosters = {}
-        for player in self.roster:
+        for player in self.roster.getRoster():
             scores = self.stats.player_box_scores_season(player,self.season)
-            player_fpts = self.stats.calculate_fantasy_points(scores)
+            player_fpts = self.stats.calculate_average_fantasy_points(scores)
             average_rosters[player] = player_fpts
         return average_rosters
 
     def getRosterTotalFPTSseason(self):
         total_rosters = {}
-        for player in self.roster:
+        for player in self.roster.getRoster():
             scores = self.stats.player_box_scores_season(player,self.season)
-            player_fpts = self.stats.calculate_fantasy_points(scores)
+            player_fpts = self.stats.calculate_total_fantasy_points(scores)
             total_rosters[player] = player_fpts
         return total_rosters
 
 
-s = PlayerStats()
-j3m = s.player_box_scores_3month("Josh Giddey","12/19/2024")
-j1m = s.player_box_scores_1month("Josh Giddey","12/19/2024")
-j1w = s.player_box_scores_1week("Josh Giddey","12/19/2024")
-print(s.calculate_average_fantasy_points(j3m))
-print(s.calculate_average_fantasy_points(j1m))
-print(s.calculate_average_fantasy_points(j1w))
+generator = PlayerIDGenerator(2025)
+generator.generate_player_ids('players.txt')
+s = RosterStats("roster.txt")
+print(s.getRosterTotalFPTSseason())
