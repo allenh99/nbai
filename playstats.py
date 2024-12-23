@@ -31,11 +31,11 @@ class PlayerStats():
             "blocks": 2,
             "3PM": 0.5,
         }
-        player_ids = {}
+        self.player_ids = {}
         with open(input_file, 'r') as file:
             for line in file:
                 name, slug = line.strip().split(",")  # Split by comma
-                player_ids[name] = slug
+                self.player_ids[name] = slug
         self.values = values if values else default_values
         
     #Calculate a players total FPTS given a box score
@@ -89,11 +89,11 @@ class PlayerStats():
 
 
 class RosterStats():
-    stats = PlayerStats()
+    stats = PlayerStats('players.txt')
 
     def __init__(self,filename):
         self.season = 2025
-        self.roster = Roster(filename,'players.txt')
+        self.roster = Roster(filename)
 
     def getRosterAverageFPTSseason(self):
         average_rosters = {}
@@ -111,8 +111,9 @@ class RosterStats():
             total_rosters[player] = player_fpts
         return total_rosters
 
-
+#print("hello world")
 generator = PlayerIDGenerator(2025)
 generator.generate_player_ids('players.txt')
+print("here")
 s = RosterStats("roster.txt")
 print(s.getRosterTotalFPTSseason())
