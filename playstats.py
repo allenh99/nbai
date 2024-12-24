@@ -1,6 +1,5 @@
 from basketball_reference_web_scraper import client
 from datetime import datetime
-from roster import Roster
 
 #PlayerIDGenerator(year) - used to produce player id map
 class PlayerIDGenerator:
@@ -24,7 +23,7 @@ class PlayerIDGenerator:
 #PlayerStats(fpt values,player id map) - gets player stats
 class PlayerStats():
 
-    def __init__(self, values=None, input_file='players.txt'):
+    def __init__(self,input_file='players.txt',values=None):
         default_values = {
             "points": 0.5,
             "assists": 1,
@@ -89,30 +88,3 @@ class PlayerStats():
         end_year = int(y) if int(m) < 8 else int(y)+1
         scores = [i for i in self.player_box_scores_season(name,end_year) if (datetime.strptime(date_string, "%Y-%m-%d").date() - i['date']).days <= 7 and (datetime.strptime(date_string, "%Y-%m-%d").date() - i['date']).days > -1]
         return scores
-
-#RosterStats(roster filename) - calculates roster statistics
-class RosterStats():
-    stats = PlayerStats('players.txt')
-
-    def __init__(self,filename):
-        self.season = 2025
-        self.roster = Roster(filename)
-
-    def getRosterAverageFPTSseason(self):
-        average_rosters = {}
-        for player in self.roster.getRoster():
-            scores = self.stats.player_box_scores_season(player,self.season)
-            player_fpts = self.stats.calculate_average_fantasy_points(scores)
-            average_rosters[player] = player_fpts
-        return average_rosters
-
-    def getRosterTotalFPTSseason(self):
-        total_rosters = {}
-        for player in self.roster.getRoster():
-            scores = self.stats.player_box_scores_season(player,self.season)
-            player_fpts = self.stats.calculate_total_fantasy_points(scores)
-            total_rosters[player] = player_fpts
-        return total_rosters
-
-generator = PlayerIDGenerator(2025)
-generator.generate_player_ids('players.txt')
