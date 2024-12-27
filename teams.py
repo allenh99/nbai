@@ -1,7 +1,7 @@
 from basketball_reference_web_scraper import client
 
-class TeamDefenseStats:
-    def __init__(self, season_end_year):
+class TeamStats():
+    def __init__(self, season_end_year=2025):
         self.season_end_year = season_end_year
         self.team_stats = {}
         self.team_ranks = {}
@@ -29,11 +29,11 @@ class TeamDefenseStats:
 
         self.rank_defense_stats()
 
-    def rank_team_stats(self):
-        def rank_teams_by_stat(stat_key, ascending=True):
+    def rank_teams_by_stat(stat_key, ascending=True):
             sorted_teams = sorted(self.team_stats.items(), key=lambda x: x[1][stat_key], reverse=not ascending)
             return {team[0]: rank + 1 for rank, team in enumerate(sorted_teams)}
 
+    def rank_team_stats(self):
         self.team_ranks = {
             "points": rank_teams_by_stat("avg_points_allowed"),
             "rebounds": rank_teams_by_stat("avg_rebounds_allowed"),
