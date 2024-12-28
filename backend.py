@@ -19,10 +19,6 @@ def home():
             "/player/box_scores": "Get box scores for a player in a season (GET)",
             "/roster/upload": "Upload a roster file (POST)"
         },
-        "example_requests": [
-            "GET /roster/average?filename=roster.txt&season=2025",
-            "GET /player/box_scores?name=LeBron+James&season=2025"
-        ]
     })
 
 
