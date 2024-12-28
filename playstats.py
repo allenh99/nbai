@@ -88,3 +88,29 @@ class PlayerStats():
         end_year = int(y) if int(m) < 8 else int(y)+1
         scores = [i for i in self.player_box_scores_season(name,end_year) if (datetime.strptime(date_string, "%Y-%m-%d").date() - i['date']).days <= 7 and (datetime.strptime(date_string, "%Y-%m-%d").date() - i['date']).days > -1]
         return scores
+    
+    def calculate_stat_averages(self, name, start_date):
+        periods = {
+            "season": lambda: self.player_box_scores_season(name, datetime.strptime(start_date, "%m/%d/%Y").year),
+            "3month": lambda: self.player_box_scores_3month(name, start_date),
+            "1month": lambda: self.player_box_scores_1month(name, start_date),
+            "1week": lambda: self.player_box_scores_1week(name, start_date),
+        }
+        
+        averages = {}
+        for period, get_box_scores in periods.items():
+            box_scores = get_box_scores()
+            if box_scores:
+                total_points = sum([box['points_scored'] for box in box_scores])
+                total_rebounds = sum([(box['offensive_rebounds'] + box['defensive_rebounds']) for box in box_scores])
+                total_assists = sum([box['assists'] for box in box_scores])
+
+                averages[period] = {
+                    "points": total_points / len(box_scores),
+                    "rebounds": total_rebounds / len(box_scores),
+                    "assists": total_assists / len(box_scores),
+                }
+            else:
+                averages[period] = {"points": 0, "rebounds": 0, "assists": 0}
+
+        return averages
