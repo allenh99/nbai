@@ -1,6 +1,5 @@
 #different agents - historical player data, opponent
-from playstats import PlayerStats,PlayerIDGenerator
-import json
+from tools.playstats import PlayerIDGenerator,PlayerStats
 from datetime import datetime
 
 current_date = datetime.now()
@@ -16,7 +15,7 @@ def boxScoreAgent(data):
     generator.generate_player_ids('players.txt')
 
     stats = PlayerStats()
-    stats.player_box_scores_season(name,2025)
-    stats.player_box_scores_3month(name,formatted_date)
-    stats.player_box_scores_1month(name,formatted_date)
+    averages = stats.calculate_stat_averages()
+    print(averages)
 
+boxScoreAgent({"player":"Josh Hart","o/u":"o","number":"8.5","stat_type":"rebounds","opp":"Washington Wizards"})
