@@ -59,3 +59,7 @@ class TeamStats():
             print(f"Defense ranks successfully written to {filename}")
         except Exception as e:
             print(f"An error occurred: {e}")
+
+t = TeamStats()
+t.calculate_team_stats()
+t.save_stats_to_file("stats.txt")
