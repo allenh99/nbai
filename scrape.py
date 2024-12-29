@@ -1,9 +1,3 @@
-from playstats import PlayerStats,PlayerIDGenerator
-from roster import RosterStats
+from agents.boxscore_agent import boxScoreAgent
 
-generator = PlayerIDGenerator(2025)
-generator.generate_player_ids('players.txt')
-
-s = RosterStats("roster.txt")
-print(s.roster.getRoster())
-print(s.getRosterAverageFPTSseason())
+boxScoreAgent({"player":"Josh Giddey","o/u":"o","number":"8.5","stat_type":"rebounds","opp":"Washington Wizards"})

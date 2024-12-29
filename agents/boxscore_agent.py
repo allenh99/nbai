@@ -15,7 +15,6 @@ def boxScoreAgent(data):
     generator.generate_player_ids('players.txt')
 
     stats = PlayerStats()
-    averages = stats.calculate_stat_averages()
-    print(averages)
+    averages = stats.calculate_stat_averages(player,formatted_date)
 
-boxScoreAgent({"player":"Josh Hart","o/u":"o","number":"8.5","stat_type":"rebounds","opp":"Washington Wizards"})
+    score = 0

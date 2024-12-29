@@ -15,7 +15,7 @@ class PlayerIDGenerator:
                     name = player['name']
                     slug = player['slug']
                     file.write(f"{name},{slug}\n")
-            print(f"Player IDs successfully written to {output_file}")
+            #print(f"Player IDs successfully written to {output_file}")
         except Exception as e:
             print(f"An error occurred: {e}")
 
@@ -90,27 +90,47 @@ class PlayerStats():
         return scores
     
     def calculate_stat_averages(self, name, start_date):
+        import math
+
         periods = {
             "season": lambda: self.player_box_scores_season(name, datetime.strptime(start_date, "%m/%d/%Y").year),
             "3month": lambda: self.player_box_scores_3month(name, start_date),
             "1month": lambda: self.player_box_scores_1month(name, start_date),
             "1week": lambda: self.player_box_scores_1week(name, start_date),
         }
-        
-        averages = {}
+
+        averages_and_stdevs = {}
         for period, get_box_scores in periods.items():
             box_scores = get_box_scores()
             if box_scores:
-                total_points = sum([box['points_scored'] for box in box_scores])
-                total_rebounds = sum([(box['offensive_rebounds'] + box['defensive_rebounds']) for box in box_scores])
-                total_assists = sum([box['assists'] for box in box_scores])
+                points = [box['points_scored'] for box in box_scores]
+                rebounds = [(box['offensive_rebounds'] + box['defensive_rebounds']) for box in box_scores]
+                assists = [box['assists'] for box in box_scores]
 
-                averages[period] = {
-                    "points": total_points / len(box_scores),
-                    "rebounds": total_rebounds / len(box_scores),
-                    "assists": total_assists / len(box_scores),
+                def calculate_stdev(values):
+                    mean = sum(values) / len(values)
+                    variance = sum((x - mean) ** 2 for x in values) / len(values)
+                    return math.sqrt(variance)
+
+                averages_and_stdevs[period] = {
+                    "points": {
+                        "average": sum(points) / len(points),
+                        "stdev": calculate_stdev(points)
+                    },
+                    "rebounds": {
+                        "average": sum(rebounds) / len(rebounds),
+                        "stdev": calculate_stdev(rebounds)
+                    },
+                    "assists": {
+                        "average": sum(assists) / len(assists),
+                        "stdev": calculate_stdev(assists)
+                    },
                 }
             else:
-                averages[period] = {"points": 0, "rebounds": 0, "assists": 0}
+                averages_and_stdevs[period] = {
+                    "points": {"average": 0, "stdev": 0},
+                    "rebounds": {"average": 0, "stdev": 0},
+                    "assists": {"average": 0, "stdev": 0},
+                }
 
-        return averages
+        return averages_and_stdevs
