@@ -40,4 +40,8 @@ def boxScoreAgent(data):
     ret = 'over' if score else 'under'
     message = "Based on the last week, " + ret + " " + str(number) + " for " + stat_type + " is expected."
 
-    return {"data": performance_comparison, "message": [message], "signal": ret}
+    return {
+        "data": performance_comparison, 
+        "message": [message], 
+        "signal": ret
+    }
