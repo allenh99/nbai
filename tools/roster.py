@@ -1,4 +1,4 @@
-from playstats import PlayerStats
+from tools.playstats import PlayerStats
 
 class Roster:
 

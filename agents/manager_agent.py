@@ -1,9 +1,10 @@
-def manager_agent(data, agents):
 
-    results = []
+def managerAgent(data, agents):
+
+    results = {}
     
     for agent in agents:
         result = agent(data)
-        results.append(result)
+        results["box_score_agent"] = result
     
     return results

@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from playstats import PlayerStats
-from roster import RosterStats
+from tools.playstats import PlayerStats
+from tools.roster import RosterStats
+from agents.manager_agent import managerAgent
+from agents.boxscore_agent import boxScoreAgent
 
 app = Flask(__name__)
 CORS(app)  # Allow cross-origin requests for frontend integration
@@ -11,15 +13,9 @@ player_stats = PlayerStats('players.txt')
 
 @app.route('/')
 def home():
-    return jsonify({
-        "message": "Welcome to the Fantasy Basketball API",
-        "endpoints": {
-            "/roster/average": "Get average fantasy points for a roster (GET)",
-            "/roster/total": "Get total fantasy points for a roster (GET)",
-            "/player/box_scores": "Get box scores for a player in a season (GET)",
-            "/roster/upload": "Upload a roster file (POST)"
-        },
-    })
+    data = {"player":"Josh Hart","o/u":"o","number":"8.5","stat_type":"rebounds","opp":"Washington Wizards"}
+
+    return jsonify(managerAgent(data,[boxScoreAgent]))
 
 
 # Endpoint: Get average fantasy points for a roster
