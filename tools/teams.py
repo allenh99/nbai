@@ -2,7 +2,7 @@ from nba_api.stats.endpoints import leaguedashteamstats
 from collections import defaultdict
 
 class TeamStats:
-    def __init__(self, season="2023-24"):
+    def __init__(self, season="2024-25"):
         self.season = season
         self.team_stats = {}
         self.team_ranks = {}
