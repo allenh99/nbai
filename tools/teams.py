@@ -1,7 +1,7 @@
 from nba_api.stats.endpoints import leaguedashteamstats
 from collections import defaultdict
 
-class TeamStatsNBAAPI:
+class TeamStats:
     def __init__(self, season="2023-24"):
         self.season = season
         self.team_stats = {}
@@ -75,6 +75,3 @@ class TeamStatsNBAAPI:
             return {"stats": team_data, "ranks": team_ranks}
         else:
             return None
-
-t = TeamStatsNBAAPI(season="2023-24")
-t.fetch_team_stats()
