@@ -35,19 +35,18 @@ def oppAgent(data):
     messages = []
     signal = "neutral"
 
-    # Focus on the relevant stat based on stat_type
     for stat_key, threshold in stat_thresholds.items():
         rank = ranks.get(stat_key)
         if rank:
             if rank < threshold:
                 messages.append(f"{opponent_team} excels in {stat_key.replace('_rank', '').replace('_', ' ')} (ranked {rank}).")
                 if stat_type == "points":
-                    signal = "under"  # Strong defensive teams for points signal "under"
+                    signal = "under"  # strong defensive teams for points signal "under"
                 elif stat_type == "rebounds":
-                    signal = "under"  # Strong rebounding teams signal "under"
+                    signal = "under"  # strong rebounding teams signal "under"
             elif rank > threshold:
                 messages.append(f"{opponent_team} struggles in {stat_key.replace('_rank', '').replace('_', ' ')} (ranked {rank}).")
-                signal = "over"  # Weak teams in key areas signal "over"
+                signal = "over"  # weak teams in key areas signal "over"
 
     # Default message if no insights are generated
     if not messages:
