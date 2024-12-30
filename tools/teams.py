@@ -1,82 +1,43 @@
-from basketball_reference_web_scraper import client
-from datetime import datetime, timedelta
+from nba_api.stats.endpoints import leaguedashteamstats
 from collections import defaultdict
 
-class TeamStats:
-    def __init__(self, season_end_year=2025):
-        self.season_end_year = season_end_year
-        self.team_stats = defaultdict(lambda: {
-            "games_played": 0,
-            "opponent_points": 0,
-            "opponent_rebounds": 0,
-            "opponent_assists": 0
-        })
+class TeamStatsNBAAPI:
+    def __init__(self, season="2023-24"):
+        self.season = season
+        self.team_stats = {}
         self.team_ranks = {}
 
-    def calculate_team_stats(self):
-        # Determine season start and end dates (NBA season typically starts in October and ends in April)
-        season_start = datetime(self.season_end_year - 1, 10, 1)
-        season_end = datetime(self.season_end_year, 4, 30)
+    def fetch_team_stats(self):
+        # Fetch team stats from nba_api
+        response = leaguedashteamstats.LeagueDashTeamStats(
+            season=self.season,
+            measure_type_detailed_defense="Advanced"  # Advanced stats
+        ).get_normalized_dict()
 
-        current_date = season_start
-        while current_date <= season_end:
-            try:
-                box_scores = client.team_box_scores(
-                    day=current_date.day, month=current_date.month, year=current_date.year
-                )
-                for game in box_scores:
-                    team_name = game['team'].value
-                    opponent_points = game['points']
-                    opponent_rebounds = game['offensive_rebounds'] + game['defensive_rebounds']
-                    opponent_assists = game['assists']
+        stats = response['LeagueDashTeamStats']
 
-                    self.team_stats[team_name]["games_played"] += 1
-                    self.team_stats[team_name]["opponent_points"] += opponent_points
-                    self.team_stats[team_name]["opponent_rebounds"] += opponent_rebounds
-                    self.team_stats[team_name]["opponent_assists"] += opponent_assists
-
-            except Exception as e:
-                print(f"An error occurred on {current_date}: {e}")
-
-            current_date += timedelta(days=1)
-
-        # Calculate averages
-        for team, stats in self.team_stats.items():
-            games_played = stats["games_played"]
-            if games_played > 0:
-                stats["avg_points_allowed"] = stats["opponent_points"] / games_played
-                stats["avg_rebounds_allowed"] = stats["opponent_rebounds"] / games_played
-                stats["avg_assists_allowed"] = stats["opponent_assists"] / games_played
+        # Process team stats
+        for team in stats:
+            team_name = team['TEAM_NAME']
+            self.team_stats[team_name] = {
+                "off_rating": team['OFF_RATING'],    # Offensive Rating
+                "def_rating": team['DEF_RATING'],    # Defensive Rating
+                "net_rating": team['NET_RATING'],    # Net Rating
+                "reb_percent": team['REB_PCT'],      # Rebound Percentage
+                "ast_ratio": team['AST_RATIO']       # Assist Ratio
+            }
 
         self.rank_team_stats()
 
     def rank_teams_by_stat(self, stat_key, ascending=True):
-        sorted_teams = sorted(self.team_stats.items(), key=lambda x: x[1].get(stat_key, 0), reverse=not ascending)
+        sorted_teams = sorted(self.team_stats.items(), key=lambda x: x[1][stat_key], reverse=not ascending)
         return {team[0]: rank + 1 for rank, team in enumerate(sorted_teams)}
 
     def rank_team_stats(self):
         self.team_ranks = {
-            "points": self.rank_teams_by_stat("avg_points_allowed"),
-            "rebounds": self.rank_teams_by_stat("avg_rebounds_allowed"),
-            "assists": self.rank_teams_by_stat("avg_assists_allowed")
+            "off_rating": self.rank_teams_by_stat("off_rating", ascending=False),
+            "def_rating": self.rank_teams_by_stat("def_rating"),
+            "net_rating": self.rank_teams_by_stat("net_rating", ascending=False),
+            "reb_percent": self.rank_teams_by_stat("reb_percent", ascending=False),
+            "ast_ratio": self.rank_teams_by_stat("ast_ratio", ascending=False),
         }
-
-    def save_stats_to_file(self, filename):
-        try:
-            with open(filename, 'w') as file:
-                file.write("Team,Avg Points Allowed,Avg Rebounds Allowed,Avg Assists Allowed\n")
-                for team, stats in self.team_stats.items():
-                    file.write(f"{team},{stats.get('avg_points_allowed', 0):.2f},{stats.get('avg_rebounds_allowed', 0):.2f},{stats.get('avg_assists_allowed', 0):.2f}\n")
-            print(f"Defense stats successfully written to {filename}")
-        except Exception as e:
-            print(f"An error occurred: {e}")
-
-    def save_ranks_to_file(self, filename):
-        try:
-            with open(filename, 'w') as file:
-                file.write("Team,Points Rank,Rebounds Rank,Assists Rank\n")
-                for team in self.team_ranks["points"].keys():
-                    file.write(f"{team},{self.team_ranks['points'][team]},{self.team_ranks['rebounds'][team]},{self.team_ranks['assists'][team]}\n")
-            print(f"Defense ranks successfully written to {filename}")
-        except Exception as e:
-            print(f"An error occurred: {e}")
