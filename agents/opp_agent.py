@@ -11,8 +11,8 @@ def oppAgent(data):
         dict: Analysis of the opponent's team stats with a signal based on the prioritized stat type.
     """
 
-    opponent_team = data.get("opp")
-    stat_type = data.get("stat_type")  # e.g., "points", "rebounds", "assists"
+    opponent_team = data["opp"]
+    stat_type = data["stat_type"]  # e.g., "points", "rebounds", "assists"
     thresholds = {
         "points": {"def_rating_rank": 15},   # Prioritize defensive rating for points
         "rebounds": {"reb_percent_rank": 15},  # Prioritize rebound percentage for rebounds
