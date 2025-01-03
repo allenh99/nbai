@@ -42,7 +42,7 @@ Reasoning: <explanation>
     # Extract the assistant's response
     choices = response.choices
     first_choice = choices[0]
-    print(first_choice.message.content)
+    return first_choice.message.content
 
 def managerAgent(data, agents):
     """

@@ -26,7 +26,7 @@ def home():
         "opp_agent": oppAgent
     }
 
-    return jsonify(managerAgent(data,agent))
+    return jsonify(managerAgent(data,agents))
 
 if __name__ == '__main__':
     app.run(debug=True)
