@@ -8,7 +8,7 @@ class PlayerIDGenerator:
 
     def generate_player_ids(self, output_file):
         try:
-            print(self.season_end_year)
+            #print(self.season_end_year)
             players = client.players_season_totals(season_end_year=self.season_end_year)
             with open(output_file, 'w') as file:
                 for player in players:

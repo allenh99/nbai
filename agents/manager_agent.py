@@ -40,7 +40,9 @@ Reasoning: <explanation>
     )
     
     # Extract the assistant's response
-    return response["choices"][0]["message"]["content"]
+    choices = response.choices
+    first_choice = choices[0]
+    print(first_choice.message.content)
 
 def managerAgent(data, agents):
     """
