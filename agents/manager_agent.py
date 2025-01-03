@@ -1,4 +1,7 @@
+from openai import OpenAI
+
 def managerAgent(data, agents):
+
     """
     Manager agent that coordinates multiple agents and aggregates their results.
 
