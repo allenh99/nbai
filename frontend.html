@@ -18,4 +18,41 @@
         }
     </style>
 </head>
+<body>
+    <h1>Player Stats</h1>
+    <button id="fetchDataButton">Fetch Data</button>
+    <div id="output">
+        <p>Click the button to fetch data from the backend.</p>
+    </div>
+
+    <script>
+        document.getElementById('fetchDataButton').addEventListener('click', () => {
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = '<p>Loading...</p>';
+
+            // Use Fetch API to connect to the backend
+            fetch('http://127.0.0.1:5000/') // Replace with your Flask backend URL
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Display the data
+                    outputDiv.innerHTML = `
+                        <h2>Response:</h2>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    `;
+                })
+                .catch(error => {
+                    // Handle errors
+                    outputDiv.innerHTML = `
+                        <p>Error fetching data:</p>
+                        <pre>${error.message}</pre>
+                    `;
+                });
+        });
+    </script>
+</body>
 </html>
