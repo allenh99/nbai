@@ -7,7 +7,7 @@ formatted_date = current_date.strftime("%m/%d/%Y")
 
 def boxScoreAgent(data):
     player = data["player"]
-    ou = data["o/u"]
+    ou = data["ou"]
     number = float(data["number"])
     stat_type = data["stat_type"]
 
