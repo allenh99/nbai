@@ -8,7 +8,7 @@ function App() {
         stat_type: 'rebounds', // Default to 'rebounds'
         opp: ''
     });
-    const [response, setResponse] = useState(null);
+    const [finalDecision, setFinalDecision] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -21,6 +21,7 @@ function App() {
         e.preventDefault();
         setLoading(true);
         setError(null);
+        setFinalDecision(null);
 
         try {
             const res = await fetch('http://127.0.0.1:5000/', {
@@ -36,7 +37,13 @@ function App() {
             }
 
             const data = await res.json();
-            setResponse(data);
+
+            // Extract "final_decision" from the response
+            if (data.final_decision) {
+                setFinalDecision(data.final_decision);
+            } else {
+                setError("No final decision found in the response.");
+            }
         } catch (err) {
             setError(err.message);
         } finally {
@@ -64,7 +71,7 @@ function App() {
                 <div style={{ marginBottom: '10px' }}>
                     <label>Over/Under (o/u): </label>
                     <select
-                        name="o/u"
+                        name="ou"
                         value={formData.ou}
                         onChange={handleChange}
                         required
@@ -124,11 +131,7 @@ function App() {
             <div style={{ marginTop: '20px', padding: '10px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9' }}>
                 {loading && <p>Loading...</p>}
                 {error && <p style={{ color: 'red' }}>Error: {error}</p>}
-                {response && (
-                    <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
-                        {JSON.stringify(response, null, 2)}
-                    </pre>
-                )}
+                {finalDecision && <p><strong>Final Decision:</strong> {finalDecision}</p>}
             </div>
         </div>
     );
