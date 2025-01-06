@@ -14,13 +14,11 @@ player_stats = PlayerStats('players.txt')
 
 @app.route('/')
 def home():
-    data = {
-        "player":"Josh Hart",
-        "o/u":"o",
-        "number":"8.5",
-        "stat_type":"rebounds",
-        "opp":"Washington Wizards"
-    }
+    data = request.json
+
+    if not data:
+        return jsonify({"error": "No data provided"}), 400
+        
     agents = {
         "box_score_agent": boxScoreAgent,
         "opp_agent": oppAgent
