@@ -1,24 +1,29 @@
-import React from 'react';
+import './FormComponent.css';
 
 function FormComponent({ formData, handleChange, handleSubmit }) {
     return (
-        <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
+        <form onSubmit={handleSubmit} className="form-container">
+            <h2>Will it Cash?</h2>
+
             {/* Player Name */}
-            <div style={{ marginBottom: '10px' }}>
-                <label>Player Name: </label>
+            <div className="form-group">
+                <label htmlFor="player">Player Name</label>
                 <input
                     type="text"
+                    id="player"
                     name="player"
                     value={formData.player}
                     onChange={handleChange}
                     required
+                    placeholder="Enter player name"
                 />
             </div>
 
             {/* Over/Under */}
-            <div style={{ marginBottom: '10px' }}>
-                <label>Over/Under (o/u): </label>
+            <div className="form-group">
+                <label htmlFor="ou">Over/Under (o/u)</label>
                 <select
+                    id="ou"
                     name="ou"
                     value={formData.ou}
                     onChange={handleChange}
@@ -30,21 +35,24 @@ function FormComponent({ formData, handleChange, handleSubmit }) {
             </div>
 
             {/* Number */}
-            <div style={{ marginBottom: '10px' }}>
-                <label>Number: </label>
+            <div className="form-group">
+                <label htmlFor="number">Number</label>
                 <input
                     type="number"
+                    id="number"
                     name="number"
                     value={formData.number}
                     onChange={handleChange}
                     required
+                    placeholder="Enter a number"
                 />
             </div>
 
             {/* Stat Type */}
-            <div style={{ marginBottom: '10px' }}>
-                <label>Stat Type: </label>
+            <div className="form-group">
+                <label htmlFor="stat_type">Stat Type</label>
                 <select
+                    id="stat_type"
                     name="stat_type"
                     value={formData.stat_type}
                     onChange={handleChange}
@@ -59,18 +67,21 @@ function FormComponent({ formData, handleChange, handleSubmit }) {
             </div>
 
             {/* Opposing Team */}
-            <div style={{ marginBottom: '10px' }}>
-                <label>Opposing Team: </label>
+            <div className="form-group">
+                <label htmlFor="opp">Opposing Team</label>
                 <input
                     type="text"
+                    id="opp"
                     name="opp"
                     value={formData.opp}
                     onChange={handleChange}
                     required
+                    placeholder="Enter opposing team name"
                 />
             </div>
 
-            <button type="submit" style={{ padding: '10px 20px', fontSize: '16px' }}>
+            {/* Submit Button */}
+            <button type="submit" className="form-button">
                 Submit
             </button>
         </form>

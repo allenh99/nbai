@@ -1,0 +1,187 @@
+/* Container */
+.form-container {
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Heading */
+.form-container h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4a5568;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+/* Form Group (Flexbox Layout for Alignment) */
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+/* Labels */
+.form-group label {
+    flex: 1;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4a5568;
+    margin-right: 16px;
+    text-align: right; /* Align label text to the right */
+}
+
+/* Inputs and Selects */
+.form-group input,
+.form-group select {
+    flex: 2;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #2d3748;
+    transition: border-color 0.2s ease-in-out;
+}
+
+/* Input Focus */
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #3182ce;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+/* Submit Button */
+.form-button {
+    width: 100%;
+    background-color: #3182ce;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.form-button:hover {
+    background-color: #2b6cb0;
+}
+
+/* Form Container: Extra Styles */
+.form-container .form-divider {
+    margin-top: 20px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 16px;
+}
+
+
+/* Result Container */
+.result-container {
+    margin-top: 20px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #f9fafb;
+    font-family: Arial, sans-serif;
+}
+
+/* Loading Message */
+.loading-message {
+    color: #3182ce;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Error Message */
+.error-message {
+    color: #e53e3e;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Final Decision */
+.final-decision {
+    color: #38a169;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 0;
+    word-wrap: break-word; /* Ensure long text wraps correctly */
+}
+
+/* No Result */
+.no-result {
+    color: #718096;
+    font-style: italic;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Shared Styles for Form and Result Containers */
+.container {
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 600px; /* Ensure consistent width */
+    margin: 0 auto; /* Center align */
+    font-family: Arial, sans-serif;
+}
+
+/* Form-Specific Styles */
+.form-container {
+    margin-bottom: 20px;
+}
+
+/* Result-Specific Styles */
+.result-container {
+    margin-top: 20px;
+}
+
+/* Headings for Both Containers */
+.container h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4a5568;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+/* Other Result-Specific Styles */
+.loading-message {
+    color: #3182ce;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.error-message {
+    color: #e53e3e;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.final-decision {
+    color: #38a169;
+    font-weight: bold;
+    font-size: 1rem;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.no-result {
+    color: #718096;
+    font-style: italic;
+    font-size: 0.9rem;
+    text-align: center;
+}
+

@@ -54,7 +54,6 @@ function App() {
 
     return (
         <div style={{ fontFamily: 'Arial, sans-serif', padding: '20px' }}>
-            <h1>Player Stats Query</h1>
             <FormComponent formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
             <ResultComponent loading={loading} error={error} finalDecision={finalDecision} />
         </div>
