@@ -33,5 +33,5 @@ Flask-CORS: Handles cross-origin requests.
 React: Frontend library for building user interfaces.\
 Bootstrap: CSS framework for responsive styling.
 
-nba_api: https://github.com/swar/nba_api\
+nba_api: https://github.com/swar/nba_api \
 bbasketball_reference_web_scraper: https://github.com/jaebradley/basketball_reference_web_scraper
