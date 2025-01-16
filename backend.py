@@ -15,7 +15,6 @@ player_stats = PlayerStats('players.txt')
 @app.route('/', methods=['POST'])
 def home():
     data = request.json
-
     if not data:
         return jsonify({"error": "No data provided"}), 400
     print(data)
