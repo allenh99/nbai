@@ -27,3 +27,6 @@ agents = {
 }
 
 res = managerAgent(run_data,agents)
+print(res["final_decision"])
+print("\n")
+print(res["agent_results"])
