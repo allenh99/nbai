@@ -26,6 +26,16 @@ To Start Backend:
 python backend.py
 ```
 
+To use without app:
+
+```console
+python run_agents.py {Player Name} {o/u} {number} {stat type} {opposing team}
+```
+
+```console
+python run_agents.py Josh Hart o 8.5 rebounds Toronto Raptors 
+```
+
 ## Technologies Used
 Flask: Lightweight web framework for Python.\
 Flask-CORS: Handles cross-origin requests.
