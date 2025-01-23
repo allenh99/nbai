@@ -32,6 +32,7 @@ To use without app:
 python run_agents.py {Player Name} {o/u} {number} {stat type} {opposing team}
 ```
 
+Example Usage:
 ```console
 python run_agents.py Josh Hart o 8.5 rebounds Toronto Raptors 
 ```
