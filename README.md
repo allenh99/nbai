@@ -1,48 +1,84 @@
-# NBAi
+# NBAi 🏀
 
-This Sports Statline Agent leverages NBA APIs and LLM agents for predicting players over/under. Contains a frontend and backend app for predicting the over/under.
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
+[![React](https://img.shields.io/badge/React-18.0%2B-61DAFB)](https://reactjs.org/)
+[![Flask](https://img.shields.io/badge/Flask-2.0%2B-lightgrey)](https://flask.palletsprojects.com/)
 
-## Features
+NBAi is an intelligent sports analytics platform that leverages NBA APIs and LLM agents to predict player performance over/under statistics. The platform consists of a modern web interface and a powerful backend prediction system.
 
-User-Friendly Interface: A simple and clean form where users can input player information.
+## ✨ Features
 
-Real-Time Predictions: Fetches the final decision from the Flask backend based on the provided data.
+- **Intuitive User Interface**: Clean and responsive form for easy player data input
+- **Real-Time Predictions**: Instant over/under predictions powered by advanced analytics
+- **Dual-Agent System**:
+  - Boxscore Agent: Analyzes player historical performance across multiple timeframes
+  - Opponent Agent: Evaluates opponent team statistics and defensive metrics
 
-Currently uses two agents:\
-Boxscore Agent: analyzes players historical data in different timeframes\
-Opponent Agent: analyzes opponent season statistics
+## 🚀 Getting Started
 
-## Usage
+### Prerequisites
 
-To Start Frontend:
+- Python 3.8 or higher
+- Node.js and npm
+- NBA API credentials
 
-```console
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/nbai.git
+cd nbai
+```
+
+2. Install backend dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+3. Install frontend dependencies:
+```bash
+cd bball-stats-frontend
+npm install
+```
+
+### Running the Application
+
+#### Frontend
+```bash
 npm start --prefix bball-stats-frontend
 ```
 
-To Start Backend:
-
-```console
+#### Backend
+```bash
 python backend.py
 ```
 
-To use without app:
+### Command Line Usage
 
-```console
+You can also use the prediction system directly from the command line:
+
+```bash
 python run_agents.py {Player Name} {o/u} {number} {stat type} {opposing team}
 ```
 
-Example Usage:
-```console
-python run_agents.py Josh Hart o 8.5 rebounds Toronto Raptors 
+Example:
+```bash
+python run_agents.py Josh Hart o 8.5 rebounds Toronto Raptors
 ```
 
-## Technologies Used
-Flask: Lightweight web framework for Python.\
-Flask-CORS: Handles cross-origin requests.
+## 🛠️ Technology Stack
 
-React: Frontend library for building user interfaces.\
-Bootstrap: CSS framework for responsive styling.
+### Backend
+- **Flask**: Lightweight web framework for Python
+- **Flask-CORS**: Cross-origin resource sharing support
+- **nba_api**: Official NBA statistics API wrapper
+- **basketball_reference_web_scraper**: Basketball Reference data extraction
 
-nba_api: https://github.com/swar/nba_api \
-bbasketball_reference_web_scraper: https://github.com/jaebradley/basketball_reference_web_scraper
+### Frontend
+- **React**: Modern UI library for building interactive interfaces
+- **Bootstrap**: Responsive CSS framework for consistent styling
+
+## 📚 APIs used
+
+- [NBA API Documentation](https://github.com/swar/nba_api)
+- [Basketball Reference Web Scraper](https://github.com/jaebradley/basketball_reference_web_scraper)
