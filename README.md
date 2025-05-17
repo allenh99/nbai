@@ -1,14 +1,16 @@
 # NBAi 🏀
 
-<img src="https://img.shields.io/github/last-commit/allenh99/nbai?style=flat-square" />
-<img src="https://img.shields.io/github/languages/top/allenh99/nbai?style=flat-square" />
-<img src="https://img.shields.io/github/languages/count/allenh99/nbai?style=flat-square" />
+<p>
+    <img src="https://img.shields.io/github/last-commit/allenh99/nbai?style=flat-square" />
+    <img src="https://img.shields.io/github/languages/top/allenh99/nbai?style=flat-square" />
+    <img src="https://img.shields.io/github/languages/count/allenh99/nbai?style=flat-square" />
+</p>
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 [![React](https://img.shields.io/badge/React-18.0%2B-61DAFB)](https://reactjs.org/)
 [![Flask](https://img.shields.io/badge/Flask-2.0%2B-lightgrey)](https://flask.palletsprojects.com/)
 
-NBAi is an intelligent sports analytics platform that leverages NBA APIs and LLM agents to predict player performance over/under statistics. The platform consists of a modern web interface and a powerful backend prediction system.
+NBAi is an intelligent sports analytics tool that leverages NBA APIs and LLM agents to predict player performance over/under statistics. The platform consists of a modern web interface and a powerful backend prediction system.
 
 ## ✨ Features
 
