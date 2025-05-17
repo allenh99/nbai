@@ -1,5 +1,9 @@
 # NBAi 🏀
 
+<img src="https://img.shields.io/github/last-commit/allenh99/nbai?style=flat-square" />
+<img src="https://img.shields.io/github/languages/top/allenh99/nbai?style=flat-square" />
+<img src="https://img.shields.io/github/languages/count/allenh99/nbai?style=flat-square" />
+
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 [![React](https://img.shields.io/badge/React-18.0%2B-61DAFB)](https://reactjs.org/)
 [![Flask](https://img.shields.io/badge/Flask-2.0%2B-lightgrey)](https://flask.palletsprojects.com/)
@@ -82,3 +86,4 @@ python run_agents.py Josh Hart o 8.5 rebounds Toronto Raptors
 
 - [NBA API Documentation](https://github.com/swar/nba_api)
 - [Basketball Reference Web Scraper](https://github.com/jaebradley/basketball_reference_web_scraper)
+- OpenAI's Chat Completions API
