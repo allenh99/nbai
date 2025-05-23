@@ -12,6 +12,11 @@
 
 NBAi is an intelligent sports analytics tool that leverages NBA APIs and LLM agents to predict player performance over/under statistics. The platform consists of a modern web interface and a powerful backend prediction system.
 
+<p>
+<img src="public/screenshots/nbai1.png"/>
+<img src="public/screenshots/nbai2.png"/>
+</p>
+
 ## ✨ Features
 
 - **Intuitive User Interface**: Clean and responsive form for easy player data input
