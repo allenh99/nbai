@@ -1,7 +1,7 @@
 /* Container */
 .form-container {
     background-color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(23, 64, 139, 0.1);
     border-radius: 12px;
     padding: 2.5rem;
     max-width: 800px;
@@ -9,6 +9,7 @@
     margin: 0 auto;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     transition: transform 0.2s ease-in-out;
+    border: 1px solid var(--border-color);
 }
 
 .form-container:hover {
@@ -34,7 +35,7 @@
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: var(--primary-color);
+    background-color: var(--primary-color);
     border-radius: 2px;
 }
 
@@ -78,7 +79,7 @@
 .form-group select:focus {
     border-color: var(--primary-color);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+    box-shadow: 0 0 0 3px rgba(23, 64, 139, 0.2);
 }
 
 /* Placeholder styling */
@@ -89,7 +90,7 @@
 /* Submit Button */
 .form-button {
     width: 100%;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background-color: var(--primary-color);
     color: white;
     font-size: 1rem;
     font-weight: 600;
@@ -103,7 +104,8 @@
 
 .form-button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+    background-color: var(--secondary-color);
+    box-shadow: 0 4px 12px rgba(201, 8, 42, 0.3);
 }
 
 .form-button:active {
@@ -113,13 +115,14 @@
 /* Result Container */
 .result-container {
     background-color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(23, 64, 139, 0.1);
     border-radius: 12px;
     padding: 2.5rem;
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    border: 1px solid var(--border-color);
 }
 
 /* Loading Message */
@@ -129,8 +132,9 @@
     font-size: 1.1rem;
     text-align: center;
     padding: 1rem;
-    background-color: rgba(26, 115, 232, 0.1);
+    background-color: rgba(23, 64, 139, 0.1);
     border-radius: 8px;
+    border: 1px solid rgba(23, 64, 139, 0.2);
 }
 
 /* Error Message */
@@ -140,8 +144,9 @@
     font-size: 1.1rem;
     text-align: center;
     padding: 1rem;
-    background-color: rgba(234, 67, 53, 0.1);
+    background-color: rgba(201, 8, 42, 0.1);
     border-radius: 8px;
+    border: 1px solid rgba(201, 8, 42, 0.2);
 }
 
 /* Final Decision */
@@ -200,7 +205,7 @@
     width: 40px;
     height: 40px;
     margin: 0 auto 1rem;
-    border: 3px solid rgba(26, 115, 232, 0.3);
+    border: 3px solid rgba(23, 64, 139, 0.3);
     border-radius: 50%;
     border-top-color: var(--primary-color);
     animation: spin 1s linear infinite;
@@ -212,10 +217,11 @@
 
 /* Signal Section */
 .signal-section {
-    background-color: rgba(26, 115, 232, 0.1);
+    background-color: rgba(23, 64, 139, 0.1);
     padding: 1.5rem;
     border-radius: 8px;
     margin-bottom: 1.5rem;
+    border: 1px solid rgba(23, 64, 139, 0.2);
 }
 
 .signal-section h3 {
@@ -233,9 +239,10 @@
 
 /* Reasoning Section */
 .reasoning-section {
-    background-color: #f8f9fa;
+    background-color: white;
     padding: 1.5rem;
     border-radius: 8px;
+    border: 1px solid var(--border-color);
 }
 
 .reasoning-section h3 {
@@ -268,7 +275,7 @@
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: var(--primary-color);
+    background-color: var(--primary-color);
     border-radius: 2px;
 }
 

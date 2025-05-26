@@ -56,10 +56,12 @@ npm install
 
 #### Frontend
 ```bash
+cd bball-stats-frontend
 npm start --prefix bball-stats-frontend
 ```
 
 #### Backend
+in the main repository:
 ```bash
 python backend.py
 ```

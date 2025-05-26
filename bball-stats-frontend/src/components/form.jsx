@@ -3,7 +3,7 @@ import './FormComponent.css';
 function FormComponent({ formData, handleChange, handleSubmit }) {
     return (
         <form onSubmit={handleSubmit} className="form-container">
-            <h2>Will it Cash?</h2>
+            <h2>Predict</h2>
 
             {/* Player Name */}
             <div className="form-group">

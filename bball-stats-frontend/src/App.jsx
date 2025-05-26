@@ -56,15 +56,15 @@ function App() {
     return (
         <div className="app-container">
             <header className="app-header">
-                <h1>NBA Stats Predictor</h1>
-                <p className="subtitle">AI-powered basketball statistics prediction</p>
+                <h1>NBAi</h1>
+                <p className="subtitle">an AI-agent powered basketball stats predictior</p>
             </header>
             <main className="app-main">
                 <FormComponent formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
                 <ResultComponent loading={loading} error={error} finalDecision={finalDecision} />
             </main>
             <footer className="app-footer">
-                <p>Powered by advanced analytics and machine learning</p>
+                <p>github.com/allenh99/nbai</p>
             </footer>
         </div>
     );
