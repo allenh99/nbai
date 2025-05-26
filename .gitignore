@@ -1,5 +1,7 @@
 roster.txt
 players.txt
+requirements.txt
 .env
 scrape.py
 *.venv*
+__pycache__

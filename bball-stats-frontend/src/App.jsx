@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FormComponent from './components/form';
 import ResultComponent from './components/result';
+import './App.css';
 
 function App() {
     const [formData, setFormData] = useState({
@@ -53,9 +54,18 @@ function App() {
     };
 
     return (
-        <div style={{ fontFamily: 'Arial, sans-serif', padding: '20px' }}>
-            <FormComponent formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
-            <ResultComponent loading={loading} error={error} finalDecision={finalDecision} />
+        <div className="app-container">
+            <header className="app-header">
+                <h1>NBA Stats Predictor</h1>
+                <p className="subtitle">AI-powered basketball statistics prediction</p>
+            </header>
+            <main className="app-main">
+                <FormComponent formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
+                <ResultComponent loading={loading} error={error} finalDecision={finalDecision} />
+            </main>
+            <footer className="app-footer">
+                <p>Powered by advanced analytics and machine learning</p>
+            </footer>
         </div>
     );
 }

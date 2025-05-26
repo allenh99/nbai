@@ -58,8 +58,8 @@ function FormComponent({ formData, handleChange, handleSubmit }) {
                     onChange={handleChange}
                     required
                 >
-                    <option value="rebounds">Rebounds</option>
                     <option value="points">Points</option>
+                    <option value="rebounds">Rebounds</option>
                     <option value="assists">Assists</option>
                     <option value="steals">Steals</option>
                     <option value="blocks">Blocks</option>

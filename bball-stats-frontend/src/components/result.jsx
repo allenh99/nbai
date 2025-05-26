@@ -8,30 +8,43 @@ function ResultComponent({ loading, error, finalDecision }) {
         : [null, null];
 
     return (
-        <div className="container result-container">
-            <h2>Results</h2>
+        <div className="result-container fade-in">
+            <h2>Prediction Results</h2>
 
             {/* Show loading message */}
-            {loading && <p className="loading-message">Loading...</p>}
+            {loading && (
+                <div className="loading-message">
+                    <div className="loading-spinner"></div>
+                    <p>Analyzing player statistics...</p>
+                </div>
+            )}
 
             {/* Show error message */}
-            {error && <p className="error-message">Error: {error}</p>}
+            {error && (
+                <div className="error-message">
+                    <p>⚠️ {error}</p>
+                </div>
+            )}
 
             {/* Show final decision */}
             {finalSignal && (
                 <div className="final-decision">
-                    <p>
-                        <strong>Final Signal:</strong> {finalSignal.trim()}
-                    </p>
-                    <p>
-                        <strong>Reasoning:</strong> {reasoning.trim()}
-                    </p>
+                    <div className="signal-section">
+                        <h3>Final Signal</h3>
+                        <p className="signal">{finalSignal.trim()}</p>
+                    </div>
+                    <div className="reasoning-section">
+                        <h3>Analysis</h3>
+                        <p>{reasoning.trim()}</p>
+                    </div>
                 </div>
             )}
 
             {/* Show placeholder if no result */}
             {!loading && !error && !finalDecision && (
-                <p className="no-result">No result to display yet.</p>
+                <div className="no-result">
+                    <p>Enter player details above to get started</p>
+                </div>
             )}
         </div>
     );
