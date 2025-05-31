@@ -1,6 +1,5 @@
 roster.txt
 players.txt
-requirements.txt
 .env
 scrape.py
 *.venv*
