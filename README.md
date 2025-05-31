@@ -93,8 +93,9 @@ python run_agents.py Josh Hart o 8.5 rebounds Toronto Raptors
 - **React**: Modern UI library for building interactive interfaces
 - **Bootstrap**: Responsive CSS framework for consistent styling
 
-## 📚 APIs used
+## 📚 APIs and Libraries used
 
 - [NBA API Documentation](https://github.com/swar/nba_api)
 - [Basketball Reference Web Scraper](https://github.com/jaebradley/basketball_reference_web_scraper)
+- [scikit-learn](https://scikit-learn.org/): Machine learning library for Random Forest implementation
 - OpenAI's Chat Completions API
