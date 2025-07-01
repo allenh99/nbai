@@ -1,4 +1,4 @@
-# NBAi 🏀
+# NBAi
 
 <p>
     <img src="https://img.shields.io/github/last-commit/allenh99/nbai?style=flat-square" />
@@ -16,7 +16,7 @@ NBAi is an intelligent sports analytics tool that leverages NBA APIs and LLM age
 <img src="public/screenshots/nbai1.png"/>
 </p>
 
-## ✨ Features
+## Features
 
 - **Intuitive User Interface**: Clean and responsive form for easy player data input
 - **Real-Time Predictions**: Instant over/under predictions powered by advanced analytics
@@ -25,7 +25,7 @@ NBAi is an intelligent sports analytics tool that leverages NBA APIs and LLM age
   - Boxscore Agent (Random Forest): Machine learning-based predictions on player historical performance using a Random Forest Classifier
   - Opponent Agent: Evaluates opponent team statistics and defensive metrics
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -79,7 +79,7 @@ Example:
 python run_agents.py Josh Hart o 8.5 rebounds Toronto Raptors
 ```
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Backend
 - **Flask**: Lightweight web framework for Python
@@ -93,7 +93,7 @@ python run_agents.py Josh Hart o 8.5 rebounds Toronto Raptors
 - **React**: Modern UI library for building interactive interfaces
 - **Bootstrap**: Responsive CSS framework for consistent styling
 
-## 📚 APIs and Libraries used
+## APIs and Libraries used
 
 - [NBA API Documentation](https://github.com/swar/nba_api)
 - [Basketball Reference Web Scraper](https://github.com/jaebradley/basketball_reference_web_scraper)
